@@ -21,7 +21,7 @@ public class Main {
     }
 
     @Bean
-    CommandLineRunner runner(CategoryRepository categoryRepository, StorageService storageService) {
+    CommandLineRunner runner(StorageService storageService) {
         return args -> {
             storageService.init();
 //            CategoryEntity category = new CategoryEntity();

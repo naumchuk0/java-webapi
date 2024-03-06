@@ -105,4 +105,14 @@ public class CategoryController {
         Page<CategoryItemDTO> result = categories.map(categoryMapper::categoryItemDTO);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @GetMapping("/search/{description}")
+    public ResponseEntity<Page<CategoryItemDTO>> searchByDescription(@RequestParam(required = false)
+                                                            @PathVariable String description,
+                                                            Pageable pageable) {
+        Page<CategoryEntity> categories = categoryRepository.findByDescriptionContainingIgnoreCase(description, pageable);
+        Page<CategoryItemDTO> result = categories.map(categoryMapper::categoryItemDTO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 }
